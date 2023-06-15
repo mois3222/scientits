@@ -1,7 +1,10 @@
 import views from "../views/Home.html";
 
 const Home = () => {
-  return views;
+  const divElement = document.createElement("div");
+  divElement.classList = "Characters";
+  divElement.innerHTML = views;
+  return divElement;
 };
 
 export default Home;

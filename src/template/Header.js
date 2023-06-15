@@ -1,7 +1,10 @@
 import views from "../views/Header.html";
 
 const Header = () => {
-  return views;
+  const divElement = document.createElement("div");
+  divElement.classList = "Characters";
+  divElement.innerHTML = views;
+  return divElement;
 };
 
 export default Header;
