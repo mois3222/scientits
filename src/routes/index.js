@@ -14,6 +14,8 @@ const routes = {
 export const router = async () => {
   const $header = null || document.getElementById("header");
   const $content = null || document.getElementById("content");
+  $content.innerHTML = "";
+
   $header.innerHTML = "";
   let hash = getHash();
   let route = await resolveRoutes(hash);
@@ -22,9 +24,7 @@ export const router = async () => {
   $header.appendChild(await Header());
 
   let render = routes[route];
-  if (!render) {
-    $content.innerHTML = "";
-    return $content.appendChild(Error404());
-  }
+  if (!render) return $content.appendChild(Error404());
+
   $content.appendChild(await render());
 };
