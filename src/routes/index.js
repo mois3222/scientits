@@ -15,13 +15,16 @@ export const router = async () => {
   const $header = null || document.getElementById("header");
   const $content = null || document.getElementById("content");
   $header.innerHTML = "";
+  let hash = getHash();
+  let route = await resolveRoutes(hash);
+  console.log(hash);
 
   $header.appendChild(await Header());
 
-  let hash = getHash();
-  let route = await resolveRoutes(hash);
-
   let render = routes[route];
-  if (!render) return $content.appendChild(Error404());
+  if (!render) {
+    $content.innerHTML = "";
+    return $content.appendChild(Error404());
+  }
   $content.appendChild(await render());
 };
